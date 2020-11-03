@@ -70,9 +70,11 @@ public class MainController {
   }
   
   @GetMapping("/edit/{id}")
-  public String editUser(@PathVariable String id ,@RequestParam(defaultValue = "") String name,@RequestParam(defaultValue = "") String email){
-
-      return "redirect:/";
+  public String editUser(@PathVariable String id ,@RequestParam(defaultValue = "") String name,@RequestParam(defaultValue = "") String email,ModelMap model){
+      Optional<User> u  = userRepository.findById(Integer.parseInt(id));
+      model.addAttribute("name",u.get().getName());
+      model.addAttribute("email",u.get().getEmail());
+      return "edit";  
   }
  
 }

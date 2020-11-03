@@ -10,35 +10,39 @@
 <body>
     <nav class="navbar navbar-dark bg-dark justify-content-between">
         <a class="navbar-brand" href="#">
-          <img src="https://i.pinimg.com/originals/3f/3d/d9/3f3dd9219f7bb1c9617cf4f154b70383.jpg" width="30" height="30" alt="" loading="lazy">
+          <!-- <img src="https://i.pinimg.com/originals/3f/3d/d9/3f3dd9219f7bb1c9617cf4f154b70383.jpg" width="30" height="30" alt="" loading="lazy"> -->
         </a>
-        <a class="badge badge-light">CRUD BY SPRING BOOT</a>
+        <a class="badge badge-light text-center" style="margin: 10px;font-size: 20px;"><span id="typed"></span></a>
         <a href="#"></a>
       </nav>
+
+
     <div class="row text-center justify-content-center" id="from_save" style="margin-top: 100px;">
-        <div class="col-4">
+        <div class="col-12 col-md-4">
             <form action="/add" method="get">
-                <input class="form-control"type="text" name="name" id="1" placeholder="name">
-                <input class="form-control"type="text" name="email" id="2" placeholder="email">
+          
+                <input class="form-control"type="text" name="name" id="1" placeholder="name"required>
+                <br>
+                <input class="form-control"type="text" name="email" id="2" placeholder="email"required>
                 <br>
                 <input class="btn btn-primary"type="submit" value="save to database">
             </form>
         </div>
 
-        <div class="col-4">
+        <div class="col-12 col-md-6">
             <table class="table table-dark ">
                 <thead>
-                    <tr class="text-center">
-                        <th>ID</th>
+                    <tr>
+                        <!-- <th>ID</th> -->
                         <th>Name</th>
                         <th>E-mail</th>
                         <th>Date</th>
-                        <th colspan="2">Process</th>
+                        <th colspan="2" class="text-center">Process</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="user: ${allUser}">
-                        <td th:text="${user.getId()}"></td>
+                        <!-- <td th:text="${user.getId()}"></td> -->
                         <td th:text="${user.getName()}"></td>
                         <td th:text="${user.getEmail()}"></td>
                         <td th:text="${user.getTime()}"></td>
@@ -58,5 +62,15 @@
        
     </div>
     <!-- <p th:text="${myName}"></p> -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+    <script>
+        var typed = new Typed('#typed', {
+            strings: ['CRUD BY', 'SPRING BOOT'],
+            typeSpeed: 100,
+            backSpeed:200,
+            loop:true
+
+        });
+      </script>
 </body>
 </html>

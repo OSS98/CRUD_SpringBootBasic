@@ -8,10 +8,12 @@ import com.example.CRUD_spring.entities.User;
 import com.example.CRUD_spring.repositories.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.ReadOnlyProperty;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -70,11 +72,20 @@ public class MainController {
   }
   
   @GetMapping("/edit/{id}")
-  public String editUser(@PathVariable String id ,@RequestParam(defaultValue = "") String name,@RequestParam(defaultValue = "") String email,ModelMap model){
+  public String editUser(@PathVariable String id ,ModelMap model){
       Optional<User> u  = userRepository.findById(Integer.parseInt(id));
+      model.addAttribute("id",u.get().getId());
       model.addAttribute("name",u.get().getName());
       model.addAttribute("email",u.get().getEmail());
       return "edit";  
+  }
+  @GetMapping("/change")
+  public String editUser(@RequestParam String id ,@RequestParam String name,@RequestParam String email){
+      Optional<User> u  = userRepository.findById(Integer.parseInt(id));
+      u.get().setName(name);
+      u.get().setEmail(email);
+      userRepository.save(u.get());
+      return "redirect:/";  
   }
  
 }

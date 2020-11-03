@@ -8,17 +8,27 @@
  
 </head>
 <body>
-    <nav class="navbar navbar-dark bg-dark">
+    <nav class="navbar navbar-dark bg-dark justify-content-between">
         <a class="navbar-brand" href="#">
           <img src="https://i.pinimg.com/originals/3f/3d/d9/3f3dd9219f7bb1c9617cf4f154b70383.jpg" width="30" height="30" alt="" loading="lazy">
         </a>
+        <a class="btn btn-danger" href="/">Back</a>
     </nav>
-    <form action="#" method="GET">
-        <input type="text" name="name" id="" th:value="${name}">
-        <input type="text" name="email" id="" th:value="${email}">
-        <input type="submit" value="EDIT">
-    </form>
-
+    <div class="row justify-content-center text-center" style="margin-top: 50px;">
+        <div class="col-4">
+            <form action="/change" method="GET">
+            
+                <input class="form-control" type="hidden" name="id" id="" th:value="${id}">
+                <input class="form-control" type="text" name="name" id="" th:value="${name}">
+                <input class="form-control"type="text" name="email" id="" th:value="${email}">
+                <br>
+                <input class="btn btn-primary "type="submit" value="EDIT">
+            </form>
+        </div>
+    
+        
+    </div>
+    
     
     <!-- <p th:text="${myName}"></p> -->
 </body>
